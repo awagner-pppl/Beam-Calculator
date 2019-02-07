@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import Beam_Analysis_Funcs
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -452,7 +453,7 @@ class Ui_MainWindow(object):
         self.roundButton.clicked.connect(self.hideRadio)
         self.hexButton.clicked.connect(self.hideRadio)
         self.tBeamButton.clicked.connect(self.hideRadio)
-        self.angleButton.clicked.connect(self.hideRadio)
+        self.angleButton.clicked.connect(self.hideRadio)        
 
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(1)
@@ -460,6 +461,32 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         self.sectionCalc.clicked.connect(self.callCalcSection)
+
+    def hideRadio(self):
+
+        Beam_Analysis_Funcs.hideRadio(self)
+
+    def callCalcSection(self):
+        
+        self.errorField.hide()
+
+        Beam_Analysis_Funcs.callCalcSection(self)
+
+    def callError(self, errorType):
+
+        self.errorField.show()
+        
+        if errorType == 1:
+
+            self.errorField.setText('Error: no input values.')
+
+        if errorType == 2:
+
+            self.errorField.setText('Error: not yet defined.')
+
+        if errorType == 3:
+
+            self.errorField.setText('Error: invalid geometry.')
       
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

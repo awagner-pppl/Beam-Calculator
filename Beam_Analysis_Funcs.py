@@ -1,15 +1,13 @@
+import math
+
 def callCalcSection(self):
 
     #Determines what calculation to perform based on radio button
 
-    self.errorField.hide()
-
     if self.rectangleButton.isChecked():
 
         if (self.rectangleOutHeight.value() <= 0 or
-            self.rectangleOutWidth.value() <= 0 or
-            self.rectangleInHeight.value() <= 0 or
-            self.rectangleInWidth.value() <= 0):
+            self.rectangleOutWidth.value() <= 0):
 
             errorType = 1
 
@@ -17,66 +15,119 @@ def callCalcSection(self):
             
         else:
 
-            calcSectionArea = (self.rectangleOutHeight.value()*
-                               self.rectangleOutWidth.value() -
-                               self.rectangleInHeight.value()*
-                               self.rectangleInWidth.value())
-                     
-            self.sectionArea.setValue(calcSectionArea)
+            self.sectionArea.setValue(
+                self.rectangleOutHeight.value() *
+                self.rectangleOutWidth.value() -
+                self.rectangleInHeight.value() *
+                self.rectangleInWidth.value())                     
+          
+            self.sectionMoment.setValue(
+                (self.rectangleOutHeight.value() *
+                 self.rectangleOutWidth.value() ** 3 -
+                 self.rectangleInHeight.value() *
+                 self.rectangleInWidth.value() ** 3) / 12)
             
-            calcMoment = ((self.rectangleOutHeight.value()*
-                           self.rectangleOutWidth.value()**3 -
-                           self.rectangleInHeight.value()*
-                           self.rectangleInWidth.value()**3)/12)
-
-            self.sectionMoment.setValue(calcMoment)
-                
     if self.iBeamButton.isChecked():
 
-        if (iBeamHeight <= 0 or iBeamWidth <= 0 or
-            iBeamFlange <= 0 or iBeamWeb <= 0):
+        if (self.iBeamHeight.value() <= 0 or
+            self.iBeamWidth.value() <= 0 or
+            self.iBeamFlange.value() <= 0 or
+            self.iBeamWeb.value() <= 0):
 
-                errorType = 1
+            errorType = 1
 
-                self.errorField()
+            self.callError(errorType)
 
+        else:
+
+            self.sectionArea.setValue((
+                self.iBeamHeight.value() * self.iBeamWidth.value() ** 3
+                - (self.iBeamHeight.value() - 2 *
+                self.iBeamFlange.value()) * (self.iBeamWidth.value() -
+                self.iBeamWeb.value()) ** 3) / 12)
+
+            self.sectionMoment.setValue(
+                self.iBeamHeight.value() * self.iBeamWidth.value() -
+                (self.iBeamHeight.value() - 2 * self.iBeamFlange.value()
+                 ) * (self.iBeamWidth.value() - self.iBeamWeb.value()))
+            
     if self.uChannelButton.isChecked():
+
+        if (self.channelHeight.value() <= 0 or
+            self.channelWidth.value() <= 0 or
+            self.flangeHeight.value() <= 0 or
+            self.flangeWidth.value() <= 0):
+
+            errorType = 1
+
+            self.callError(errorType)
+
+        elif (self.flangeHeight.value() > self.channelHeight.value() or
+              self.flangeWidth.value() > self.channelWidth.value()):
+
+            errorType = 3
+
+            self.callError(errorType)
+
+        else:
+
+            self.sectionArea.setValue(
+                self.channelHeight.value() *
+                self.channelWidth.value() -
+                self.flangeHeight.value() * self.flangeWidth.value())
+
+            self.sectionMoment.setValue(
+                (self.channelHeight.value() *
+                self.channelWidth.value() ** 3 -
+                self.flangeHeight.value() * self.flangeWidth.value()
+                ** 3) / 12)
         
-        errorType = 1
-
-        self.errorField()
-
     if self.roundButton.isChecked():
-        
-        errorType = 1
 
-        self.errorField()
+        if self.roundOD.value() <= 0:
+
+            errorType = 1
+
+            self.callError(errorType)
+
+        else:
+            
+            self.sectionArea.setValue(
+                math.pi * ((self.roundOD.value() / 2) ** 2 -
+                (self.roundID.value() / 2) ** 2))
+
+            self.sectionMoment.setValue(
+                (math.pi * (self.roundOD.value() ** 4 -
+                self.roundID.value() ** 4) ) / 64)
 
     if self.hexButton.isChecked():
-        
-        errorType = 1
 
-        self.errorField()
+        if self.hexLength.value() <= 0:
+
+            errorType = 1
+
+            self.callError(errorType)
+
+        else:
+
+            self.sectionArea.setValue(self.hexLength.value() ** 2 * 3 /
+                                      2 * math.sqrt(3))
+
+            self.sectionMoment.setValue(
+                5 / 16 * math.sqrt(3) * self.hexLength.value() ** 4)
+            
 
     if self.tBeamButton.isChecked():
-        
-        errorType = 1
 
-        self.errorField()
+        errorType = 2
+
+        self.callError(errorType)
 
     if self.angleButton.isChecked():
-        
-        errorType = 1
 
-        self.errorField()
+        errorType = 2
 
-def callError(self, errorType):
-
-    self.errorField.show()
-    
-    if errorType == 1:
-
-        self.errorField.setText('Error: no input values')
+        self.callError(errorType)
 
 def hideRadio(self):
 
