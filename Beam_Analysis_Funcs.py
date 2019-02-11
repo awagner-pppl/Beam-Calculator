@@ -2,6 +2,8 @@ import math
 
 def callCalcSection(self):
 
+    print('Step 3')
+
     #Determines what calculation to perform based on radio button
 
     if self.rectangleButton.isChecked():
@@ -115,21 +117,51 @@ def callCalcSection(self):
 
             self.sectionMoment.setValue(
                 5 / 16 * math.sqrt(3) * self.hexLength.value() ** 4)
-            
 
     if self.tBeamButton.isChecked():
 
-        errorType = 2
+        if (self.teeHeight.value() <= 0 or self.teeFlange.value() <= 0 or
+        self.teeWidth.value() <= 0 or self.teeStem.value() <= 0):
 
-        self.callError(errorType)
+            errorType = 1
+
+            self.callError(errorType)
+
+        else:
+            
+            self.sectionArea.setValue(
+                (self.teeHeight.value() - self.teeFlange.value()) *
+                self.teeStem.value() + self.teeWidth.value() *
+                self.teeFlange.value())
+
+            self.sectionMoment.setValue(
+                self.teeStem.value() ** 3 * (self.teeHeight.value() -
+                self.teeFlange.value() ) / 12 + self.teeWidth.value() ** 3 *
+                self.teeFlange.value() / 12)
 
     if self.angleButton.isChecked():
 
-        errorType = 2
+        if self.angleLength.value() <= 0 or self.angleThick.value() <= 0:
 
-        self.callError(errorType)
+            errorType = 1
 
-def hideRadio(self):
+            self.callError(errorType)
+
+        else:
+
+            a = self.angleLength.value()
+
+            t = self.angleThick.value()
+
+            y = a - (a ** 2 + a * t - t ** 2)/( 2 * (2 * a - t))
+
+            self.sectionArea.setValue(
+                (t * y ** 3 + a * (a - y) ** 3 - (a - t) * (a - y - t) ** 3)
+                / 3)            
+
+def pickShape(self):
+    
+    print('Step 2')
 
     #Hides geometry inputs based on radio button choice
 
@@ -137,26 +169,21 @@ def hideRadio(self):
 
     if self.rectangleButton.isChecked():
         self.stackedWidget.setCurrentIndex(2)
-        sectionType = 1
 
     if self.iBeamButton.isChecked():
         self.stackedWidget.setCurrentIndex(3)
-        sectionType = 3
 
     if self.uChannelButton.isChecked():
         self.stackedWidget.setCurrentIndex(1)
-        sectionType = 2
 
     if self.roundButton.isChecked():
         self.stackedWidget.setCurrentIndex(4)
-        sectionType = 4
 
     if self.hexButton.isChecked():
         self.stackedWidget.setCurrentIndex(0)
-        sectionType = 0
 
     if self.tBeamButton.isChecked():
-        self.stackedWidget.hide()
+        self.stackedWidget.setCurrentIndex(5)
 
     if self.angleButton.isChecked():
-        self.stackedWidget.hide() 
+        self.stackedWidget.setCurrentIndex(6)
