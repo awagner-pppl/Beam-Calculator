@@ -76,9 +76,9 @@ def callCalcSection(self):
         else:
 
             self.sectionArea.setValue(
-                self.channelHeight.value() *
+                (self.channelHeight.value() *
                 self.channelWidth.value() -
-                self.flangeHeight.value() * self.flangeWidth.value()
+                self.flangeHeight.value() * self.flangeWidth.value())
                 * (conFact ** 2))
 
             self.sectionMoment.setValue(
@@ -198,76 +198,23 @@ def pickShape(self):
 
 def unitConv(self):
 
-    outFact = outputUnitLabel(self)
+    unitDict = {
+        'Meters': ['m', 1],
+        'cm': ['cm', 0.01],
+        'mm': ['mm', 0.001],
+        'Inches': ['in', 0.0254],
+        'Feet': ['ft', 0.3048]
+        }
 
-    if str(self.inputUnit.currentText()) == 'Meters':
+    dictCallOut = self.outputUnit.currentText()
 
-        inFact = 1
+    dispUnit = unitDict[dictCallOut][0]
 
-    elif str(self.inputUnit.currentText()) == 'cm':
+    self.sectionArea.setSuffix(' ' + dispUnit + '^2')
 
-        inFact = 0.01
-
-    elif str(self.inputUnit.currentText()) == 'mm':
-
-        inFact = 0.001
-
-    elif str(self.inputUnit.currentText()) == 'Inches':
-
-        inFact = 0.0254
-
-    elif str(self.inputUnit.currentText()) == 'Feet':
-
-        inFact = 0.3048
-
-    convFact = inFact / outFact
+    self.sectionMoment.setSuffix(' ' + dispUnit + '^4')
+    
+    convFact = ( unitDict[self.inputUnit.currentText()][1] /
+                 unitDict[dictCallOut][1] )
 
     return convFact
-
-def outputUnitLabel(self):
-    
-    if str(self.outputUnit.currentText()) == 'Meters':
-        
-        self.sectionArea.setSuffix(' m^2')
-
-        self.sectionMoment.setSuffix(' m^4')
-
-        outConvFact = 1
-
-    elif str(self.outputUnit.currentText()) == 'cm':
-
-        self.sectionArea.setSuffix(' cm^2')
-
-        self.sectionMoment.setSuffix(' cm^4')
-
-        outConvFact = 0.01
-
-    elif str(self.outputUnit.currentText()) == 'mm':
-
-        self.sectionArea.setSuffix(' mm^2')
-
-        self.sectionMoment.setSuffix(' mm^4')
-
-        outConvFact = 0.001
-
-    elif str(self.outputUnit.currentText()) == 'Inches':
-
-        self.sectionArea.setSuffix(' in^2')
-
-        self.sectionMoment.setSuffix(' in^4')
-
-        outConvFact = 0.0254
-
-    elif str(self.outputUnit.currentText()) == 'Feet':
-
-        self.sectionArea.setSuffix(' ft^2')
-
-        self.sectionMoment.setSuffix(' ft^4')
-
-        outConvFact = 0.3048
-
-    else:
-
-        print('Error: not yet defined.')
-
-    return outConvFact
