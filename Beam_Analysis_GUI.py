@@ -7,12 +7,11 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import Beam_Analysis_Funcs
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(564, 546)
+        MainWindow.resize(548, 563)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
@@ -87,14 +86,14 @@ class Ui_MainWindow(object):
         self.channelWidth.setGeometry(QtCore.QRect(10, 80, 111, 22))
         self.channelWidth.setMaximum(999999.99)
         self.channelWidth.setObjectName("channelWidth")
-        self.flangeHeight_2 = QtWidgets.QDoubleSpinBox(self.uChannelGeometryBox_10)
-        self.flangeHeight_2.setGeometry(QtCore.QRect(10, 130, 111, 22))
-        self.flangeHeight_2.setMaximum(999999.99)
-        self.flangeHeight_2.setObjectName("flangeHeight_2")
-        self.flangeWidth_2 = QtWidgets.QDoubleSpinBox(self.uChannelGeometryBox_10)
-        self.flangeWidth_2.setGeometry(QtCore.QRect(10, 180, 111, 22))
-        self.flangeWidth_2.setMaximum(999999.99)
-        self.flangeWidth_2.setObjectName("flangeWidth_2")
+        self.flangeHeight = QtWidgets.QDoubleSpinBox(self.uChannelGeometryBox_10)
+        self.flangeHeight.setGeometry(QtCore.QRect(10, 130, 111, 22))
+        self.flangeHeight.setMaximum(999999.99)
+        self.flangeHeight.setObjectName("flangeHeight")
+        self.flangeWidth = QtWidgets.QDoubleSpinBox(self.uChannelGeometryBox_10)
+        self.flangeWidth.setGeometry(QtCore.QRect(10, 180, 111, 22))
+        self.flangeWidth.setMaximum(999999.99)
+        self.flangeWidth.setObjectName("flangeWidth")
         self.stackedWidget.addWidget(self.page_3)
         self.page_4 = QtWidgets.QWidget()
         self.page_4.setObjectName("page_4")
@@ -193,14 +192,14 @@ class Ui_MainWindow(object):
         self.hexagonGeometryBox_13.setGeometry(QtCore.QRect(20, 10, 131, 221))
         self.hexagonGeometryBox_13.setTitle("")
         self.hexagonGeometryBox_13.setObjectName("hexagonGeometryBox_13")
-        self.teeFlange = QtWidgets.QDoubleSpinBox(self.hexagonGeometryBox_13)
-        self.teeFlange.setGeometry(QtCore.QRect(10, 180, 111, 22))
-        self.teeFlange.setMaximum(999999.99)
-        self.teeFlange.setObjectName("teeFlange")
         self.teeHeight = QtWidgets.QDoubleSpinBox(self.hexagonGeometryBox_13)
         self.teeHeight.setGeometry(QtCore.QRect(10, 30, 111, 22))
         self.teeHeight.setMaximum(999999.99)
         self.teeHeight.setObjectName("teeHeight")
+        self.teeWidth = QtWidgets.QDoubleSpinBox(self.hexagonGeometryBox_13)
+        self.teeWidth.setGeometry(QtCore.QRect(10, 80, 111, 22))
+        self.teeWidth.setMaximum(999999.99)
+        self.teeWidth.setObjectName("teeWidth")
         self.label_32 = QtWidgets.QLabel(self.hexagonGeometryBox_13)
         self.label_32.setGeometry(QtCore.QRect(10, 160, 91, 16))
         self.label_32.setObjectName("label_32")
@@ -210,14 +209,14 @@ class Ui_MainWindow(object):
         self.label_8 = QtWidgets.QLabel(self.hexagonGeometryBox_13)
         self.label_8.setGeometry(QtCore.QRect(10, 10, 61, 16))
         self.label_8.setObjectName("label_8")
-        self.teeWidth = QtWidgets.QDoubleSpinBox(self.hexagonGeometryBox_13)
-        self.teeWidth.setGeometry(QtCore.QRect(10, 80, 111, 22))
-        self.teeWidth.setMaximum(999999.99)
-        self.teeWidth.setObjectName("teeWidth")
         self.teeStem = QtWidgets.QDoubleSpinBox(self.hexagonGeometryBox_13)
         self.teeStem.setGeometry(QtCore.QRect(10, 130, 111, 22))
         self.teeStem.setMaximum(999999.99)
         self.teeStem.setObjectName("teeStem")
+        self.teeFlange = QtWidgets.QDoubleSpinBox(self.hexagonGeometryBox_13)
+        self.teeFlange.setGeometry(QtCore.QRect(10, 180, 111, 22))
+        self.teeFlange.setMaximum(999999.99)
+        self.teeFlange.setObjectName("teeFlange")
         self.label_33 = QtWidgets.QLabel(self.hexagonGeometryBox_13)
         self.label_33.setGeometry(QtCore.QRect(10, 110, 71, 16))
         self.label_33.setObjectName("label_33")
@@ -294,7 +293,7 @@ class Ui_MainWindow(object):
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
         self.groupBox = QtWidgets.QGroupBox(self.tab_2)
-        self.groupBox.setGeometry(QtCore.QRect(10, 130, 471, 161))
+        self.groupBox.setGeometry(QtCore.QRect(10, 130, 471, 171))
         self.groupBox.setObjectName("groupBox")
         self.label_2 = QtWidgets.QLabel(self.groupBox)
         self.label_2.setGeometry(QtCore.QRect(30, 60, 71, 20))
@@ -345,9 +344,9 @@ class Ui_MainWindow(object):
         self.comboBox_8.addItem("")
         self.comboBox_8.addItem("")
         self.comboBox_8.addItem("")
-        self.pushButton_2 = QtWidgets.QPushButton(self.groupBox)
-        self.pushButton_2.setGeometry(QtCore.QRect(270, 110, 161, 23))
-        self.pushButton_2.setObjectName("pushButton_2")
+        self.importSection = QtWidgets.QPushButton(self.groupBox)
+        self.importSection.setGeometry(QtCore.QRect(270, 110, 161, 23))
+        self.importSection.setObjectName("importSection")
         self.defLoad = QtWidgets.QDoubleSpinBox(self.groupBox)
         self.defLoad.setGeometry(QtCore.QRect(30, 40, 121, 22))
         self.defLoad.setObjectName("defLoad")
@@ -362,54 +361,37 @@ class Ui_MainWindow(object):
         self.defYoungs.setObjectName("defYoungs")
         self.def2ndMom = QtWidgets.QDoubleSpinBox(self.groupBox)
         self.def2ndMom.setGeometry(QtCore.QRect(250, 80, 121, 22))
+        self.def2ndMom.setMaximum(999999999.99)
         self.def2ndMom.setObjectName("def2ndMom")
+        self.errorField_2 = QtWidgets.QLineEdit(self.groupBox)
+        self.errorField_2.setGeometry(QtCore.QRect(270, 140, 151, 20))
+        self.errorField_2.setObjectName("errorField_2")
         self.groupBox_4 = QtWidgets.QGroupBox(self.tab_2)
-        self.groupBox_4.setGeometry(QtCore.QRect(240, 10, 111, 81))
+        self.groupBox_4.setGeometry(QtCore.QRect(10, 90, 221, 41))
         self.groupBox_4.setObjectName("groupBox_4")
-        self.radioButton_7 = QtWidgets.QRadioButton(self.groupBox_4)
-        self.radioButton_7.setGeometry(QtCore.QRect(20, 20, 82, 17))
-        self.radioButton_7.setObjectName("radioButton_7")
-        self.radioButton_8 = QtWidgets.QRadioButton(self.groupBox_4)
-        self.radioButton_8.setGeometry(QtCore.QRect(20, 50, 82, 17))
-        self.radioButton_8.setObjectName("radioButton_8")
-        self.groupBox_3 = QtWidgets.QGroupBox(self.tab_2)
-        self.groupBox_3.setGeometry(QtCore.QRect(120, 10, 91, 111))
-        self.groupBox_3.setObjectName("groupBox_3")
-        self.radioButton_4 = QtWidgets.QRadioButton(self.groupBox_3)
-        self.radioButton_4.setGeometry(QtCore.QRect(20, 20, 82, 17))
-        self.radioButton_4.setObjectName("radioButton_4")
-        self.radioButton_5 = QtWidgets.QRadioButton(self.groupBox_3)
-        self.radioButton_5.setGeometry(QtCore.QRect(20, 50, 82, 17))
-        self.radioButton_5.setObjectName("radioButton_5")
-        self.radioButton_6 = QtWidgets.QRadioButton(self.groupBox_3)
-        self.radioButton_6.setGeometry(QtCore.QRect(20, 80, 82, 17))
-        self.radioButton_6.setObjectName("radioButton_6")
-        self.groupBox_5 = QtWidgets.QGroupBox(self.tab_2)
-        self.groupBox_5.setGeometry(QtCore.QRect(370, 10, 111, 111))
-        self.groupBox_5.setObjectName("groupBox_5")
-        self.radioButton_10 = QtWidgets.QRadioButton(self.groupBox_5)
-        self.radioButton_10.setGeometry(QtCore.QRect(20, 20, 82, 17))
-        self.radioButton_10.setObjectName("radioButton_10")
-        self.radioButton_11 = QtWidgets.QRadioButton(self.groupBox_5)
-        self.radioButton_11.setGeometry(QtCore.QRect(20, 50, 82, 17))
-        self.radioButton_11.setObjectName("radioButton_11")
-        self.radioButton_12 = QtWidgets.QRadioButton(self.groupBox_5)
-        self.radioButton_12.setGeometry(QtCore.QRect(20, 80, 82, 17))
-        self.radioButton_12.setObjectName("radioButton_12")
+        self.loadP = QtWidgets.QRadioButton(self.groupBox_4)
+        self.loadP.setGeometry(QtCore.QRect(20, 20, 82, 17))
+        self.loadP.setObjectName("loadP")
+        self.loadD = QtWidgets.QRadioButton(self.groupBox_4)
+        self.loadD.setGeometry(QtCore.QRect(120, 20, 82, 17))
+        self.loadD.setObjectName("loadD")
         self.groupBox_2 = QtWidgets.QGroupBox(self.tab_2)
-        self.groupBox_2.setGeometry(QtCore.QRect(10, 10, 81, 111))
+        self.groupBox_2.setGeometry(QtCore.QRect(10, 10, 221, 81))
         self.groupBox_2.setObjectName("groupBox_2")
-        self.radioButton = QtWidgets.QRadioButton(self.groupBox_2)
-        self.radioButton.setGeometry(QtCore.QRect(20, 20, 82, 17))
-        self.radioButton.setObjectName("radioButton")
-        self.radioButton_2 = QtWidgets.QRadioButton(self.groupBox_2)
-        self.radioButton_2.setGeometry(QtCore.QRect(20, 50, 82, 17))
-        self.radioButton_2.setObjectName("radioButton_2")
-        self.radioButton_3 = QtWidgets.QRadioButton(self.groupBox_2)
-        self.radioButton_3.setGeometry(QtCore.QRect(20, 80, 82, 17))
-        self.radioButton_3.setObjectName("radioButton_3")
+        self.sFF = QtWidgets.QRadioButton(self.groupBox_2)
+        self.sFF.setGeometry(QtCore.QRect(20, 20, 82, 17))
+        self.sFF.setObjectName("sFF")
+        self.sFS = QtWidgets.QRadioButton(self.groupBox_2)
+        self.sFS.setGeometry(QtCore.QRect(20, 50, 82, 17))
+        self.sFS.setObjectName("sFS")
+        self.sFR = QtWidgets.QRadioButton(self.groupBox_2)
+        self.sFR.setGeometry(QtCore.QRect(120, 50, 82, 17))
+        self.sFR.setObjectName("sFR")
+        self.sSS = QtWidgets.QRadioButton(self.groupBox_2)
+        self.sSS.setGeometry(QtCore.QRect(120, 20, 91, 17))
+        self.sSS.setObjectName("sSS")
         self.groupBox_6 = QtWidgets.QGroupBox(self.tab_2)
-        self.groupBox_6.setGeometry(QtCore.QRect(10, 300, 471, 121))
+        self.groupBox_6.setGeometry(QtCore.QRect(10, 310, 471, 121))
         self.groupBox_6.setObjectName("groupBox_6")
         self.label_7 = QtWidgets.QLabel(self.groupBox_6)
         self.label_7.setGeometry(QtCore.QRect(30, 20, 71, 20))
@@ -448,21 +430,67 @@ class Ui_MainWindow(object):
         self.doubleSpinBox_8 = QtWidgets.QDoubleSpinBox(self.groupBox_6)
         self.doubleSpinBox_8.setGeometry(QtCore.QRect(30, 90, 121, 22))
         self.doubleSpinBox_8.setObjectName("doubleSpinBox_8")
-        self.pushButton = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton.setGeometry(QtCore.QRect(180, 430, 111, 31))
-        self.pushButton.setObjectName("pushButton")
+        self.deflectCalc = QtWidgets.QPushButton(self.tab_2)
+        self.deflectCalc.setGeometry(QtCore.QRect(180, 440, 111, 31))
+        self.deflectCalc.setObjectName("deflectCalc")
+        self.stackedWidget_2 = QtWidgets.QStackedWidget(self.tab_2)
+        self.stackedWidget_2.setGeometry(QtCore.QRect(250, 0, 231, 131))
+        self.stackedWidget_2.setObjectName("stackedWidget_2")
+        self.page_8 = QtWidgets.QWidget()
+        self.page_8.setObjectName("page_8")
+        self.groupBox_5 = QtWidgets.QGroupBox(self.page_8)
+        self.groupBox_5.setGeometry(QtCore.QRect(10, 10, 171, 111))
+        self.groupBox_5.setObjectName("groupBox_5")
+        self.loadC_2 = QtWidgets.QRadioButton(self.groupBox_5)
+        self.loadC_2.setGeometry(QtCore.QRect(20, 20, 82, 17))
+        self.loadC_2.setObjectName("loadC_2")
+        self.loadU_2 = QtWidgets.QRadioButton(self.groupBox_5)
+        self.loadU_2.setGeometry(QtCore.QRect(20, 50, 82, 17))
+        self.loadU_2.setObjectName("loadU_2")
+        self.loadE_2 = QtWidgets.QRadioButton(self.groupBox_5)
+        self.loadE_2.setGeometry(QtCore.QRect(20, 80, 82, 17))
+        self.loadE_2.setObjectName("loadE_2")
+        self.loadO_2 = QtWidgets.QRadioButton(self.groupBox_5)
+        self.loadO_2.setGeometry(QtCore.QRect(100, 20, 82, 17))
+        self.loadO_2.setObjectName("loadO_2")
+        self.stackedWidget_2.addWidget(self.page_8)
+        self.page_9 = QtWidgets.QWidget()
+        self.page_9.setObjectName("page_9")
+        self.groupBox_9 = QtWidgets.QGroupBox(self.page_9)
+        self.groupBox_9.setGeometry(QtCore.QRect(10, 10, 191, 111))
+        self.groupBox_9.setObjectName("groupBox_9")
+        self.loadC_3 = QtWidgets.QRadioButton(self.groupBox_9)
+        self.loadC_3.setGeometry(QtCore.QRect(20, 20, 91, 17))
+        self.loadC_3.setObjectName("loadC_3")
+        self.loadU_3 = QtWidgets.QRadioButton(self.groupBox_9)
+        self.loadU_3.setGeometry(QtCore.QRect(20, 50, 191, 17))
+        self.loadU_3.setObjectName("loadU_3")
+        self.loadE_3 = QtWidgets.QRadioButton(self.groupBox_9)
+        self.loadE_3.setGeometry(QtCore.QRect(20, 80, 171, 17))
+        self.loadE_3.setObjectName("loadE_3")
+        self.stackedWidget_2.addWidget(self.page_9)
         self.tabWidget.addTab(self.tab_2, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 564, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 548, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        ## Initially hides the QStackWidget with the entry fields
+        ## for geometry, as well as the error display fields, until the
+        ## user has picked a geometry.
+
         self.stackedWidget.hide()
         self.errorField.hide()
+        self.errorField_2.hide()
+
+        ## Connects the radio buttons for structural shapes to the
+        ## pickShape function which chooses the page in the QStackWidget
+        ## that will be called, and which has the correct fields for
+        ## entering geometry.
 
         self.uChannelButton.clicked.connect(self.pickShape)
         self.rectangleButton.clicked.connect(self.pickShape)
@@ -470,41 +498,106 @@ class Ui_MainWindow(object):
         self.roundButton.clicked.connect(self.pickShape)
         self.hexButton.clicked.connect(self.pickShape)
         self.tBeamButton.clicked.connect(self.pickShape)
-        self.angleButton.clicked.connect(self.pickShape)        
+        self.angleButton.clicked.connect(self.pickShape)
 
-        self.retranslateUi(MainWindow)
+        ## This part was generated by Qt Designer and just resets some
+        ## stuff -- it's possible some of it isn't required.
+
+        self.retranslateUi(MainWindow)        
         self.tabWidget.setCurrentIndex(0)
         self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        ## This connects the 'calculate' button on the Section
+        ## Calculator page to the function that does the calculation.
+
         self.sectionCalc.clicked.connect(self.callCalcSection)
+
+        ## This is a simple function that pulls the value in the
+        ## second moment of area box on the section page and writes it
+        ## to the box on the deflection page.
+
+        self.importSection.clicked.connect(self.copySection)
+
+        ## This section connects the load type radio buttons to the
+        ## function that calls the load location/distribution tabs.
+
+##        self.loadP.clicked.connect(self.pickLoad)
+##        self.loadD.clicked.connect(self.pickLoad)
+
+        ## This connects the 'calculate' button on the Deflection page
+        ##  to the function that does the calculation.
+
+##        self.deflectCalc.clicked.connect(self.callCalDeflect)
+
+##    def callCalcDeflect(self):
+##
+##        Beam_Def_Calc.bdc(self)
+
+##    def pickLoad(self):
+##
+##        Beam_Def_Calc.pL(self)
+        
+    def copySection(self):
+
+        if self.sectionMoment.value() == 0:
+
+            self.callError(1 , 2)
+
+        else:
+
+            self.def2ndMom.setValue(self.sectionMoment.value())
 
     def pickShape(self):
 
-        Beam_Analysis_Funcs.pickShape(self)
+        Beam_Section_Funcs.pickShape(self)
 
     def callCalcSection(self):
         
         self.errorField.hide()
 
-        Beam_Analysis_Funcs.callCalcSection(self)
+        Beam_Section_Funcs.callSectionCalc(self)
 
-    def callError(self, errorType):
-
-        self.errorField.show()
+    def callError(self, errorType, errorField):
         
-        if errorType == 1:
+        if errorField == 1:
 
-            self.errorField.setText('Error: no input values.')
+            self.errorField.show()
+            
+            if errorType == 1:
 
-        if errorType == 2:
+                self.errorField.setText('Error: no input values.')
 
-            self.errorField.setText('Error: not yet defined.')
+            if errorType == 2:
 
-        if errorType == 3:
+                self.errorField.setText('Error: not yet defined.')
 
-            self.errorField.setText('Error: invalid geometry.')
-      
+            if errorType == 3:
+
+                self.errorField.setText('Error: invalid geometry.')
+
+            self.sectionArea.setValue(0)
+            
+            self.sectionMoment.setValue(0)
+
+        if errorField == 2:
+
+            self.errorField_2.show()
+            
+            if errorType == 1:
+
+                self.errorField_2.setText('Error: no input values.')
+
+            if errorType == 2:
+
+                self.errorField_2.setText('Error: not yet defined.')
+                
+            if errorType == 3:
+
+                self.errorField_2.setText('Error: invalid geometry.')
+
+            self.def2ndMom.setValue(0)
+            
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -579,22 +672,15 @@ class Ui_MainWindow(object):
         self.comboBox_8.setItemText(2, _translate("MainWindow", "mm^4"))
         self.comboBox_8.setItemText(3, _translate("MainWindow", "ft^4"))
         self.comboBox_8.setItemText(4, _translate("MainWindow", "in^4"))
-        self.pushButton_2.setText(_translate("MainWindow", "Import From Section Calculator"))
+        self.importSection.setText(_translate("MainWindow", "Import From Section Calculator"))
         self.groupBox_4.setTitle(_translate("MainWindow", "Load Type"))
-        self.radioButton_7.setText(_translate("MainWindow", "Point"))
-        self.radioButton_8.setText(_translate("MainWindow", "Distributed"))
-        self.groupBox_3.setTitle(_translate("MainWindow", "Support 2"))
-        self.radioButton_4.setText(_translate("MainWindow", "Fixed"))
-        self.radioButton_5.setText(_translate("MainWindow", "Simple"))
-        self.radioButton_6.setText(_translate("MainWindow", "Free"))
-        self.groupBox_5.setTitle(_translate("MainWindow", "Load Location"))
-        self.radioButton_10.setText(_translate("MainWindow", "Centered"))
-        self.radioButton_11.setText(_translate("MainWindow", "Uncentered"))
-        self.radioButton_12.setText(_translate("MainWindow", "End"))
-        self.groupBox_2.setTitle(_translate("MainWindow", "Support 1"))
-        self.radioButton.setText(_translate("MainWindow", "Fixed"))
-        self.radioButton_2.setText(_translate("MainWindow", "Simple"))
-        self.radioButton_3.setText(_translate("MainWindow", "Free"))
+        self.loadP.setText(_translate("MainWindow", "Point"))
+        self.loadD.setText(_translate("MainWindow", "Distributed"))
+        self.groupBox_2.setTitle(_translate("MainWindow", "Support Type"))
+        self.sFF.setText(_translate("MainWindow", "Fixed, Fixed"))
+        self.sFS.setText(_translate("MainWindow", "Fixed, Simple"))
+        self.sFR.setText(_translate("MainWindow", "Fixed, Free"))
+        self.sSS.setText(_translate("MainWindow", "Simple, Simple"))
         self.groupBox_6.setTitle(_translate("MainWindow", "Analysis"))
         self.label_7.setText(_translate("MainWindow", "Deflection"))
         self.comboBox_5.setItemText(0, _translate("MainWindow", "Netwons"))
@@ -609,7 +695,16 @@ class Ui_MainWindow(object):
         self.comboBox_7.setItemText(3, _translate("MainWindow", "Ft-lb"))
         self.comboBox_7.setItemText(4, _translate("MainWindow", "in-lb"))
         self.comboBox_7.setItemText(5, _translate("MainWindow", "in-oz"))
-        self.pushButton.setText(_translate("MainWindow", "Calculate"))
+        self.deflectCalc.setText(_translate("MainWindow", "Calculate"))
+        self.groupBox_5.setTitle(_translate("MainWindow", "Load Location"))
+        self.loadC_2.setText(_translate("MainWindow", "Centered"))
+        self.loadU_2.setText(_translate("MainWindow", "Uncentered"))
+        self.loadE_2.setText(_translate("MainWindow", "End"))
+        self.loadO_2.setText(_translate("MainWindow", "Outside"))
+        self.groupBox_9.setTitle(_translate("MainWindow", "Distribution"))
+        self.loadC_3.setText(_translate("MainWindow", "Uniform Equal"))
+        self.loadU_3.setText(_translate("MainWindow", "Uniform Decrease (center out)"))
+        self.loadE_3.setText(_translate("MainWindow", "Uniform Increase (center out)"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Deflection"))
 
 

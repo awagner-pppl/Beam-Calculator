@@ -7,7 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import Beam_Analysis_Funcs
+import Beam_Section_Funcs
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -90,11 +90,11 @@ class Ui_MainWindow(object):
         self.flangeHeight = QtWidgets.QDoubleSpinBox(self.uChannelGeometryBox_10)
         self.flangeHeight.setGeometry(QtCore.QRect(10, 130, 111, 22))
         self.flangeHeight.setMaximum(999999.99)
-        self.flangeHeight.setObjectName("flangeHeight_2")
+        self.flangeHeight.setObjectName("flangeHeight")
         self.flangeWidth = QtWidgets.QDoubleSpinBox(self.uChannelGeometryBox_10)
         self.flangeWidth.setGeometry(QtCore.QRect(10, 180, 111, 22))
         self.flangeWidth.setMaximum(999999.99)
-        self.flangeWidth.setObjectName("flangeWidth_2")
+        self.flangeWidth.setObjectName("flangeWidth")
         self.stackedWidget.addWidget(self.page_3)
         self.page_4 = QtWidgets.QWidget()
         self.page_4.setObjectName("page_4")
@@ -193,14 +193,14 @@ class Ui_MainWindow(object):
         self.hexagonGeometryBox_13.setGeometry(QtCore.QRect(20, 10, 131, 221))
         self.hexagonGeometryBox_13.setTitle("")
         self.hexagonGeometryBox_13.setObjectName("hexagonGeometryBox_13")
-        self.teeFlange = QtWidgets.QDoubleSpinBox(self.hexagonGeometryBox_13)
-        self.teeFlange.setGeometry(QtCore.QRect(10, 180, 111, 22))
-        self.teeFlange.setMaximum(999999.99)
-        self.teeFlange.setObjectName("teeFlange")
         self.teeHeight = QtWidgets.QDoubleSpinBox(self.hexagonGeometryBox_13)
         self.teeHeight.setGeometry(QtCore.QRect(10, 30, 111, 22))
         self.teeHeight.setMaximum(999999.99)
         self.teeHeight.setObjectName("teeHeight")
+        self.teeWidth = QtWidgets.QDoubleSpinBox(self.hexagonGeometryBox_13)
+        self.teeWidth.setGeometry(QtCore.QRect(10, 80, 111, 22))
+        self.teeWidth.setMaximum(999999.99)
+        self.teeWidth.setObjectName("teeWidth")
         self.label_32 = QtWidgets.QLabel(self.hexagonGeometryBox_13)
         self.label_32.setGeometry(QtCore.QRect(10, 160, 91, 16))
         self.label_32.setObjectName("label_32")
@@ -210,14 +210,14 @@ class Ui_MainWindow(object):
         self.label_8 = QtWidgets.QLabel(self.hexagonGeometryBox_13)
         self.label_8.setGeometry(QtCore.QRect(10, 10, 61, 16))
         self.label_8.setObjectName("label_8")
-        self.teeWidth = QtWidgets.QDoubleSpinBox(self.hexagonGeometryBox_13)
-        self.teeWidth.setGeometry(QtCore.QRect(10, 80, 111, 22))
-        self.teeWidth.setMaximum(999999.99)
-        self.teeWidth.setObjectName("teeWidth")
         self.teeStem = QtWidgets.QDoubleSpinBox(self.hexagonGeometryBox_13)
         self.teeStem.setGeometry(QtCore.QRect(10, 130, 111, 22))
         self.teeStem.setMaximum(999999.99)
         self.teeStem.setObjectName("teeStem")
+        self.teeFlange = QtWidgets.QDoubleSpinBox(self.hexagonGeometryBox_13)
+        self.teeFlange.setGeometry(QtCore.QRect(10, 180, 111, 22))
+        self.teeFlange.setMaximum(999999.99)
+        self.teeFlange.setObjectName("teeFlange")
         self.label_33 = QtWidgets.QLabel(self.hexagonGeometryBox_13)
         self.label_33.setGeometry(QtCore.QRect(10, 110, 71, 16))
         self.label_33.setObjectName("label_33")
@@ -345,9 +345,9 @@ class Ui_MainWindow(object):
         self.comboBox_8.addItem("")
         self.comboBox_8.addItem("")
         self.comboBox_8.addItem("")
-        self.pushButton_2 = QtWidgets.QPushButton(self.groupBox)
-        self.pushButton_2.setGeometry(QtCore.QRect(270, 110, 161, 23))
-        self.pushButton_2.setObjectName("pushButton_2")
+        self.importSection = QtWidgets.QPushButton(self.groupBox)
+        self.importSection.setGeometry(QtCore.QRect(270, 110, 161, 23))
+        self.importSection.setObjectName("importSection")
         self.defLoad = QtWidgets.QDoubleSpinBox(self.groupBox)
         self.defLoad.setGeometry(QtCore.QRect(30, 40, 121, 22))
         self.defLoad.setObjectName("defLoad")
@@ -363,6 +363,9 @@ class Ui_MainWindow(object):
         self.def2ndMom = QtWidgets.QDoubleSpinBox(self.groupBox)
         self.def2ndMom.setGeometry(QtCore.QRect(250, 80, 121, 22))
         self.def2ndMom.setObjectName("def2ndMom")
+        self.errorField_2 = QtWidgets.QLineEdit(self.groupBox)
+        self.errorField_2.setGeometry(QtCore.QRect(280, 130, 151, 20))
+        self.errorField_2.setObjectName("errorField_2")
         self.groupBox_4 = QtWidgets.QGroupBox(self.tab_2)
         self.groupBox_4.setGeometry(QtCore.QRect(240, 10, 111, 81))
         self.groupBox_4.setObjectName("groupBox_4")
@@ -461,8 +464,18 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        ## Initially hides the QStackWidget with the entry fields
+        ## for geometry, as well as the error display fields, until the
+        ## user has picked a geometry.
+
         self.stackedWidget.hide()
         self.errorField.hide()
+        self.errorField_2.hide()
+
+        ## Connects the radio buttons for structural shapes to the
+        ## pickShape function which chooses the page in the QStackWidget
+        ## that will be called, and which has the correct fields for
+        ## entering geometry.
 
         self.uChannelButton.clicked.connect(self.pickShape)
         self.rectangleButton.clicked.connect(self.pickShape)
@@ -470,45 +483,106 @@ class Ui_MainWindow(object):
         self.roundButton.clicked.connect(self.pickShape)
         self.hexButton.clicked.connect(self.pickShape)
         self.tBeamButton.clicked.connect(self.pickShape)
-        self.angleButton.clicked.connect(self.pickShape)        
+        self.angleButton.clicked.connect(self.pickShape)
 
-        self.retranslateUi(MainWindow)
+        ## This part was generated by Qt Designer and just resets some
+        ## stuff -- it's possible some of it isn't required.
+
+        self.retranslateUi(MainWindow)        
         self.tabWidget.setCurrentIndex(0)
         self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        ## This connects the 'calculate' button on the Section
+        ## Calculator page to the function that does the calculation.
+
         self.sectionCalc.clicked.connect(self.callCalcSection)
+
+        ## This is a simple function that pulls the value in the
+        ## second moment of area box on the section page and writes it
+        ## to the box on the deflection page.
+
+        self.importSection.clicked.connect(self.copySection)
+
+        ## This section connects the load type radio buttons to the
+        ## function that calls the load location/distribution tabs.
+
+##        self.loadP.clicked.connect(self.pickLoad)
+##        self.loadD.clicked.connect(self.pickLoad)
+
+        ## This connects the 'calculate' button on the Deflection page
+        ##  to the function that does the calculation.
+
+##        self.deflectCalc.clicked.connect(self.callCalDeflect)
+
+##    def callCalcDeflect(self):
+##
+##        Beam_Def_Calc.bdc(self)
+
+##    def pickLoad(self):
+##
+##        Beam_Def_Calc.pL(self)
+        
+    def copySection(self):
+
+        if self.sectionMoment.value() == 0:
+
+            self.callError(1 , 2)
+
+        else:
+
+            self.def2ndMom.setValue(self.sectionMoment.value())
 
     def pickShape(self):
 
-        Beam_Analysis_Funcs.pickShape(self)
+        Beam_Section_Funcs.pickShape(self)
 
     def callCalcSection(self):
         
         self.errorField.hide()
 
-        Beam_Analysis_Funcs.callCalcSection(self)
+        Beam_Section_Funcs.callSectionCalc(self)
 
-    def callError(self, errorType):
-
-        self.errorField.show()
-
-        self.sectionArea.setValue(0)
-
-        self.sectionMoment.setValue(0)
+    def callError(self, errorType, errorField):
         
-        if errorType == 1:
+        if errorField == 1:
 
-            self.errorField.setText('Error: no input values.')
+            self.errorField.show()
+            
+            if errorType == 1:
 
-        if errorType == 2:
+                self.errorField.setText('Error: no input values.')
 
-            self.errorField.setText('Error: not yet defined.')
+            if errorType == 2:
 
-        if errorType == 3:
+                self.errorField.setText('Error: not yet defined.')
 
-            self.errorField.setText('Error: invalid geometry.')
-      
+            if errorType == 3:
+
+                self.errorField.setText('Error: invalid geometry.')
+
+            self.sectionArea.setValue(0)
+            
+            self.sectionMoment.setValue(0)
+
+        if errorField == 2:
+
+            self.errorField_2.show()
+            
+            if errorType == 1:
+
+                self.errorField_2.setText('Error: no input values.')
+
+            if errorType == 2:
+
+                self.errorField_2.setText('Error: not yet defined.')
+                
+            if errorType == 3:
+
+                self.errorField_2.setText('Error: invalid geometry.')
+
+            self.def2ndMom.setValue(0)
+            
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -583,7 +657,7 @@ class Ui_MainWindow(object):
         self.comboBox_8.setItemText(2, _translate("MainWindow", "mm^4"))
         self.comboBox_8.setItemText(3, _translate("MainWindow", "ft^4"))
         self.comboBox_8.setItemText(4, _translate("MainWindow", "in^4"))
-        self.pushButton_2.setText(_translate("MainWindow", "Import From Section Calculator"))
+        self.importSection.setText(_translate("MainWindow", "Import From Section Calculator"))
         self.groupBox_4.setTitle(_translate("MainWindow", "Load Type"))
         self.radioButton_7.setText(_translate("MainWindow", "Point"))
         self.radioButton_8.setText(_translate("MainWindow", "Distributed"))

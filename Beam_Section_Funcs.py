@@ -14,9 +14,9 @@ def callSectionCalc(self):
             self.callError(1 , 1)
 
         if (self.rectangleOutHeight.value()
-            < self.rectangleInHeight.value() or
+            <= self.rectangleInHeight.value() or
             self.rectangleOutWidth.value()
-            < self.rectangleInWidth.value()):
+            <= self.rectangleInWidth.value()):
 
             self.callError(3, 1)
             
@@ -74,8 +74,8 @@ def callSectionCalc(self):
 
             self.callError(1 , 1)
 
-        elif (self.flangeHeight.value() > self.channelHeight.value() or
-              self.flangeWidth.value() > self.channelWidth.value()):
+        elif (self.flangeHeight.value() >= self.channelHeight.value() or
+              self.flangeWidth.value() >= self.channelWidth.value()):
 
             self.callError(3 , 1)
 

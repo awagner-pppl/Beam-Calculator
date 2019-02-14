@@ -61,114 +61,86 @@ f2 = 0; #Maximum deflection outside simple supports
 
 def bdc(s1, s2, t, l, W, b, E, I, c, c1):
 
-    if s1 = 's' and s2 = 'f' or s1 = 'f' and s2 = 's':
+    W = self.defLoad.value()
 
-        if l = 'e' or l = 'o':
+    E = self.defYoungs.value()
 
-            #This should return an error
+    I = self.def2ndMom.value()
 
-        if t = 'p':
+    b = self.defLength1.value()
 
-            if l = 'c': #sfpc or fspc
+    L = self.defLength2.value()
 
-                f = (7*W*l^3)/(768*E*I);
+    if self.sFS.isChecked():
 
-            if l = 'n': #sfpn or fspn
+        if self.loadP.isChecked() and self.loadC.isChecked():
 
-                #This should return an error - for now
+            f = (7 * W * L ** 3) / (768 * E * I)
                            
-        if t = 'd': 
+        if self.loadD.isChecked() and self.loadUn.isChecked(): 
 
-            if l = 'u': #sfdu or fsdu
+            f = (W * L ** 3) / (185 * E * I)
 
-                f = (W*l^3)/(185*E*I);
+        else:
 
-    if s1 = 'f' and s2 = 'f':
+            self.error(1 , 2)
 
-        if l = 'e' or l = 'o':
-
-            #This should return an error
+    if self.sFF.isChecked():
 
         if t = 'p':
 
             if l = 'c': #ffpc
 
-                f = (W*l^3)/(192*E*I);
-
-            if l = 'n': #ffpn
-
-                #This should return an error
-                
+                f = (W * L ** 3) / (192 * E * I)
+               
         if t = 'd':
 
             if l = 'u': #ffdu
 
-                f = (W*l^3)/(384*E*I);
+                f = (W * L ** 3) / (384 * E * I)
 
-    if s1 = 's' and s2 = 's'1:
+    if self.sSS.isChecked():
 
-        if l = 'e':
+        if self.cLoad.isChecked():
 
-            #This should return an error
+            f = (W * L ** 3) / (48 * E * I)
 
-        if t = 'p':
+            x = b / 2
 
-            if l = 'c': #sspc
+        if self.uLoad.isChecked(): #sspn
 
-                f = (W*l^3)/(48*E*I);
-
-                x = b/2;
-
-            if l = 'n': #sspn
-
-                f = (W*c1)/(3*E*I*b)*(c/3*(b+c1))^(3/2);
-
-                x = (c/3*(b-c1))^(1/2);
-
-            if l = 'o': #sspo
-
-                f = (W*c*l^2)/(8*E*I);
-
-                f2 = (W*c^2)/(3*E*I)*(c+3*b/2);
+            f = ((W * c1) / (3 * E * I * b) * (c / 3 * (b + c1) )
+                ** (3 / 2))
                 
-        if t = 'd':
+            x = (c / 3 * (b - c1) ) ** (1 / 2)
 
-            if l = 'c' or l = 'o' or l ='n':
+        if self.oLoad.isChecked(): #sspo
 
-                #This should return an error
+            f = (W * c * L ** 2) / (8 * E * I);
 
-            if l = 'u': #ssdu
+            f2 = (W * c ** 2) / (3 * E * I) * (c + 3 * b / 2)
 
-                f = (5*W*l^3)/(384*E*I);
-
-    if s1 = 's' and s2 = 'e' or s1 = 'e' and s2 = 's':
-
-        #This should return an error
-
-    if s1 = 'f' and s2 = 'r' or s1 = 'r' and s2 = 'f':
-
-        if t = 'p':
-
-            if l = 'c': #frpc or rfpc
-
-                #This should return an error - for now
-
-            if l = 'n': #frpn or rfpn
-
-                #This should return an error - for now
-
-            if l = 'e': #frpe or rfpe
-
-                f = (W*l^3)/(3*E*I);
+            x = b / 2
                 
-        if t = 'd':
+        if self.ueLoad.isChecked():
 
-            if l = 'u': #frdu or rfdu
+            f = (5 * W * L ** 3) / (384 * E * I)
 
-                f = (W*l^3)/(384*E*I);             
+    if self.sFR.isChecked():
+
+        if self.eLoad.isChecked(): #frpe or rfpe
+
+            f = (W * L ** 3) / (3 * E * I);
+
+        if self.ueLoad.isChecked(): #frdu or rfdu
+
+            f = (W * L ** 3) / (384 * E * I);             
 
     return()
 
+def pL(self):
+
+    
                 
     
     
